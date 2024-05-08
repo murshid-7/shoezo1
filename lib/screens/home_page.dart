@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,8 +10,19 @@ import 'package:shoezo_app/screens/details_screen.dart';
 import 'package:shoezo_app/widgets/app_drawer.dart';
 import 'package:shoezo_app/widgets/carousel_ads.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getAllShoes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +32,21 @@ class HomeScreen extends StatelessWidget {
         children: [
           DrawerBarTop(),
           SizedBox(height: 5),
-            roundedCarousel(),
-            SizedBox(height: 5),
-            Text(
-              'Shop Your Favourite Brands From Here ',
-              style: TextStyle(fontWeight: FontWeight.bold),
+          roundedCarousel(),
+          SizedBox(height: 5),
+          Text(
+            'Shop Your Favourite Brands From Here ',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          BrandsLogo(),
+          Expanded(
+            child: ValueListenableBuilder(
+              valueListenable: shoeListNotifier,
+              builder: (context, List<ShoeModel> shoeList, Widget? child) {
+                return buildShoeList(shoeList);
+              },
             ),
-            BrandsLogo(),
-            Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: shoeListNotifier,
-                builder: (context, List<ShoeModel> shoeList, Widget? child) {
-                  return buildShoeList(shoeList);
-                },
-              ),
-            ),
+          ),
         ],
       )),
       drawer: Drawer1(),
@@ -48,7 +61,7 @@ Widget buildShoeList(List<ShoeModel> shoe) {
         )
       : GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 4, mainAxisSpacing: 4),
+              crossAxisCount: 2, crossAxisSpacing: 2, mainAxisSpacing: 4),
           itemCount: shoe.length,
           itemBuilder: (context, index) {
             final data = shoe[index];

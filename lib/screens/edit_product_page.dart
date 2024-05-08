@@ -42,7 +42,7 @@ class _EditStudentState extends State<EditShoeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Shoe Name'),
+        title: const Text(''),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -116,7 +116,7 @@ class _EditStudentState extends State<EditShoeScreen> {
     }
   }
 
-  Future pickImageGallery() async {
+   pickImageGallery() async {
     final returntheImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returntheImage != null) {

@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -215,12 +214,6 @@ class _DetailScreenState extends State<DetailScreen> {
           child: Container(
             height: 200,
             width: 300,
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: Image.file(File(image)),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             child: Image.file(File(image)),
           ),
         ),

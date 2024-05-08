@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -17,6 +18,7 @@ Future<void> addShoes(ShoeModel value) async {
 
 Future<void> getAllShoes() async {
   final shoeDB = await Hive.openBox<ShoeModel>('name');
+
   shoeListNotifier.value.clear();
   shoeListNotifier.value.addAll(shoeDB.values);
   shoeListNotifier.notifyListeners();

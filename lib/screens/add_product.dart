@@ -78,7 +78,7 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ),
               const SizedBox(height: 20.0),
-              // if (_imageFile != null)
+              if (_imageFile != null)
                 Image.file(
                   _imageFile!,
                   height: 200,

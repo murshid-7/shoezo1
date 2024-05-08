@@ -35,19 +35,19 @@ class _BottomNavState extends State<BottomNav> {
         onItemSelected: (index) => setState(() => _currentIndex = index),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home,size: 30.0),
             title: Text('Home'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.add_chart_rounded),
+            icon: Icon(Icons.add_chart_rounded,size: 30.0),
             title: Text('Product Chart'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add,size: 30.0),
             title: Text('Add Product'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,

@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
@@ -10,7 +11,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         title: Text(
           '$totalPrice',
           style: TextStyle(color: Colors.white),
@@ -53,6 +54,7 @@ class CartPage extends StatelessWidget {
           color: Colors.white,
           margin: EdgeInsets.symmetric(horizontal: 16),
           child: ListTile(
+            leading: Image.file(File(image)),
             title: Text(title),
             subtitle: Text(subtitle),
             trailing: Row(

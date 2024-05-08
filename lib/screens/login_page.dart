@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
+import 'package:shoezo_app/screens/home_page.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void loginFunction() async {
+  void loginFunction(BuildContext ctx) async {
     final userName = usernameController.text.trim();
     final passWord = passwordController.text.trim();
 
@@ -25,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
       final sharedpref = await SharedPreferences.getInstance();
       await sharedpref.setBool(save_key, true);
 
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => BottomNav()));
+      Navigator.of(ctx)
+          .pushReplacement(MaterialPageRoute(builder: (ctx) => BottomNav()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Incorrect username or password'),
@@ -49,7 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 100),
                     Icon(Icons.lock, size: 100),
                     SizedBox(height: 30),
-                    Text('Welcome Back', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                    Text('Welcome Back',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600)),
                     Text('Enter your email and password'),
                     SizedBox(height: 25),
                     Padding(
@@ -57,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         controller: usernameController,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                           hintText: 'Username',
                         ),
                         validator: (value) {
@@ -74,7 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                           hintText: 'Password',
                         ),
                         validator: (value) {
@@ -91,10 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          loginFunction();
+                          loginFunction(context);
                         }
                       },
-                      icon: Icon(Icons.lock_open,color: Colors.white,),
+                      icon: Icon(
+                        Icons.lock_open,
+                        color: Colors.white,
+                      ),
                       label: Text(
                         'Sign In',
                         style: TextStyle(color: Colors.white),

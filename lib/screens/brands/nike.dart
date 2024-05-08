@@ -13,7 +13,16 @@ class NikeStore extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+  backgroundColor: Colors.black.withOpacity(0.9),
+  title: Text(
+    'Nike Store',
+    style: TextStyle(
+      color: Colors.white, 
+    ),
+  ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -56,15 +65,15 @@ class NikeStore extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
+               child: Container(
                   color: Colors.grey,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.all(8),
-                  height: 150,
+                  padding: const EdgeInsets.all(2.5),
+                  margin: const EdgeInsets.all(6),
+                  height: 130,
                   child: Row(
                     children: [
                       Container(
-                        height: 150,
+                        height: 120,
                         width: 150,
                         child: Image.file(File(data.image)),
                       ),
@@ -73,7 +82,7 @@ class NikeStore extends StatelessWidget {
                           Padding(padding: EdgeInsets.all(10)),
                           Text(data.name),
                           Text(data.catagory),
-                          
+                          Text(data.price)
                         ],
                       ),
                     ],
