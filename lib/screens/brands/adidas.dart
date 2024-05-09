@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
+import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class AdidasStore extends StatelessWidget {
   const AdidasStore({Key? key});

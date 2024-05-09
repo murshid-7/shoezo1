@@ -39,6 +39,8 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.black.withOpacity(0.9),
         foregroundColor: Colors.white,
         centerTitle: true,

@@ -31,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
         children: [
           DrawerBarTop(),
+          
+          
           SizedBox(height: 5),
           roundedCarousel(),
           SizedBox(height: 5),
@@ -39,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           BrandsLogo(),
+
           Expanded(
             child: ValueListenableBuilder(
               valueListenable: shoeListNotifier,
@@ -80,7 +83,7 @@ Widget buildShoeList(List<ShoeModel> shoe) {
               },
               child: Card(
                 margin: EdgeInsets.all(5),
-                color: Colors.white10,
+                color: Colors.white,
                 child: Column(
                   children: [
                     Card(

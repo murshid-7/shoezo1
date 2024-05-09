@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, use_super_parameters, prefer_const_constructors
 
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
@@ -37,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> checkloginFail() async {
     await Future.delayed(Duration(seconds: 3));
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-      return  BottomNav();
+      return BottomNav();
     }));
   }
 
@@ -46,14 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return const Scaffold(
       backgroundColor: Colors.black,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-                Text(
-            'SHOEZO',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          )
-        ],
+        children: [Text('data')],
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
+import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class PumaStore extends StatelessWidget {
   const PumaStore({Key? key});
@@ -13,6 +14,7 @@ class PumaStore extends StatelessWidget {
     getAllShoes();
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: true,
         backgroundColor: Colors.black.withOpacity(0.9),
         title: const Text(

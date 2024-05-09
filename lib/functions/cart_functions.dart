@@ -6,9 +6,11 @@ ValueNotifier<List<CartModel>> cartListNotifier = ValueNotifier([]);
 Future<void> addShoesCart(CartModel value) async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
   await shoeDB.add(value);
-  cartListNotifier.value.add(value);
+   
+  
   cartListNotifier.notifyListeners();
 }
+
 
 Future<void> getAllShoesCart() async {
   final shoeDB = await Hive.openBox<CartModel>('cart');

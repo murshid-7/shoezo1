@@ -7,6 +7,7 @@ import 'package:shoezo_app/screens/splash_screen.dart';
 // ignore: constant_identifier_names
 const save_key = 'userlogin';
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(ShoeModelAdapter().typeId)) {
     Hive.registerAdapter(ShoeModelAdapter());

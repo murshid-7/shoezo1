@@ -8,14 +8,14 @@ import 'package:shoezo_app/models/shoe_model.dart';
 class EditShoeScreen extends StatefulWidget {
   String name;
   String price;
-  String discription;
+  String? discription;
   int index;
   dynamic imagePath;
   EditShoeScreen({
     super.key,
     required this.name,
     required this.price,
-    required this.discription,
+    this.discription,
     required this.index,
     required this.imagePath,
   });
@@ -42,7 +42,11 @@ class _EditStudentState extends State<EditShoeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        centerTitle: true,
+        
+        backgroundColor: Colors.black,
+        title: const Text('Edit Details',style: TextStyle(color: Colors.white),),
+        automaticallyImplyLeading: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

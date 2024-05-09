@@ -4,7 +4,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shoezo_app/screens/add_product.dart';
 import 'package:shoezo_app/screens/home_page.dart';
-import 'package:shoezo_app/screens/product_chart_page.dart';
+import 'package:shoezo_app/screens/pie_chart.dart';
 
 
 class BottomNav extends StatefulWidget {
@@ -41,14 +41,14 @@ class _BottomNavState extends State<BottomNav> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.add_chart_rounded,size: 30.0),
-            title: Text('Product Chart'),
+            icon: Icon(Icons.add,size: 30.0),
+            title: Text('Add Item'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.add,size: 30.0),
-            title: Text('Add Product'),
+            icon: Icon(Icons.pie_chart,size: 30.0),
+            title: Text('Chart'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
@@ -62,9 +62,9 @@ class _BottomNavState extends State<BottomNav> {
       case 0:
         return HomeScreen();
       case 1:
-        return ProductChart();
-      case 2:
         return AddProduct();
+      case 2:
+        return MyPieChart1();
       case 3:
       default:
         return HomeScreen();

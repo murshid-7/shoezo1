@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
 import 'package:shoezo_app/screens/home_page.dart';
+import 'package:shoezo_app/screens/splash_screen.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await sharedpref.setBool(save_key, true);
 
       Navigator.of(ctx)
-          .pushReplacement(MaterialPageRoute(builder: (ctx) => BottomNav()));
+          .pushReplacement(MaterialPageRoute(builder: (ctx) => SplashScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Incorrect username or password'),
