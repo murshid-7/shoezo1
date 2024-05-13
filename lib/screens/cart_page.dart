@@ -12,11 +12,23 @@ class CartPage extends StatelessWidget {
     getAllShoesCart();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
-        automaticallyImplyLeading: true,
-        title: Text(
-          '$totalPrice',
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+            Text(
+              '$totalPrice',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
         centerTitle: true,
       ),
@@ -31,7 +43,8 @@ class CartPage extends StatelessWidget {
                 title: data.name,
                 subtitle: data.price,
                 index: index,
-                image: data.image, context: context,
+                image: data.image,
+                context: context,
               );
             },
           );
@@ -41,12 +54,11 @@ class CartPage extends StatelessWidget {
   }
 
   Widget ProductItem({
-      required BuildContext context,
+    required BuildContext context,
     required int index,
     required String title,
     required String subtitle,
     required String image,
-  
   }) {
     return Column(
       children: [
@@ -60,7 +72,7 @@ class CartPage extends StatelessWidget {
             color: Colors.white,
             margin: EdgeInsets.symmetric(horizontal: 16),
             child: ListTile(
-              leading: Image.file(File(image,)),
+              leading: Image.file(File(image)),
               title: Text(title),
               subtitle: Text(subtitle),
               trailing: Row(
@@ -77,11 +89,13 @@ class CartPage extends StatelessWidget {
                     icon: Icon(Icons.edit),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditShoeScreen(
-                              name: title,
-                              price: subtitle,
-                              index: index,
-                              imagePath: image)));
+                        builder: (context) => EditShoeScreen(
+                          name: title,
+                          price: subtitle,
+                          index: index,
+                          imagePath: image,
+                        ),
+                      ));
                     },
                   ),
                 ],

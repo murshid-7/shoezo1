@@ -44,7 +44,7 @@ Row ratingBar() {
                             overlayColor:
                                 MaterialStateProperty.all(Colors.black),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
+                                MaterialStateProperty.all(Colors.amber),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
@@ -55,7 +55,7 @@ Row ratingBar() {
                             "3",
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.grey,
+                              color: Colors.black,
                             ),
                           ),
                         ),

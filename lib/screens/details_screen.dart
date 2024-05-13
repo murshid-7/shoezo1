@@ -35,12 +35,14 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Product Details',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.black,
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Row(children: [
+            IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back, color: Colors.white)),
+          ])),
       backgroundColor: const Color.fromARGB(248, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
@@ -147,7 +149,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "A pair of black running shoes, has regular styling, lace-up detail Breathable Support :Lightweight knit material wraps your foot in breathable comfort.",
+                              "A pair of casual iconic shoes, has regular styling, lace-up detail Breathable Support :Lightweight knit material wraps your foot in breathable comfort.",
                               style: TextStyle(
                                 fontSize: 15,
                               ),

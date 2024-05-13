@@ -1,9 +1,6 @@
-// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, use_super_parameters, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
-import 'package:shoezo_app/screens/home_page.dart';
 import 'package:shoezo_app/screens/login_page.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
@@ -42,10 +39,31 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        children: [Text('data')],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Text(
+                  'ShoeZo',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 20)
+            ],
+          ),
+        ),
       ),
     );
   }

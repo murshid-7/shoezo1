@@ -13,17 +13,21 @@ class PumaStore extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: true,
-        backgroundColor: Colors.black.withOpacity(0.9),
-        title: const Text(
-          'Puma Store',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
+      appBar:AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black.withOpacity(0.9),
+          title: Row(
+            children: [
+              IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  )),
+                  SizedBox(width: 70),
+              Text('PUMA STORE', style: TextStyle(color: Colors.white))
+            ],
+          )),
       body: Column(
         children: [
           Expanded(

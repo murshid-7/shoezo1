@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,15 +13,20 @@ class NikeStore extends StatelessWidget {
     getAllShoes();
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-  backgroundColor: Colors.black.withOpacity(0.9),
-  title: Text(
-    'Nike Store',
-    style: TextStyle(
-      color: Colors.white, 
-    ),
-  ),
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black.withOpacity(0.9),
+          title: Row(
+            children: [
+              IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  )),
+                  SizedBox(width: 70),
+              Text('NIKE STORE', style: TextStyle(color: Colors.white))
+            ],
+          )),
       body: Column(
         children: [
           Expanded(
@@ -65,7 +69,7 @@ class NikeStore extends StatelessWidget {
                     ),
                   );
                 },
-               child: Container(
+                child: Container(
                   color: Colors.grey,
                   padding: const EdgeInsets.all(2.5),
                   margin: const EdgeInsets.all(6),

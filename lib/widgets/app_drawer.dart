@@ -17,7 +17,7 @@ class Drawer1 extends StatelessWidget {
           await SharedPreferences.getInstance();
       sharedPreferences.setBool('key', false);
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+          .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
     }
 
     return Drawer(
@@ -99,9 +99,36 @@ Widget DrawerBarTop() => Row(
             },
           ),
         ),
-        Icon(
-          Icons.notifications_outlined,
-          size: 25,
+        Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 5),
+              height: 40,
+              width: 200,
+              padding: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(9.0),
+                color: Colors.black87,
+              ),
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.search_rounded,
+                    size: 25,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(width: 5.0),
+                  Text(
+                    "Search...",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );

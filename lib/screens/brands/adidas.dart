@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
-import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class AdidasStore extends StatelessWidget {
   const AdidasStore({Key? key});
@@ -16,15 +15,20 @@ class AdidasStore extends StatelessWidget {
     getAllShoes();
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: Colors.black.withOpacity(0.9),
-        title: Text(
-          'Adidas Store',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black.withOpacity(0.9),
+          title: Row(
+            children: [
+              IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  )),
+              SizedBox(width: 70),
+              Text('ADIDAS STORE', style: TextStyle(color: Colors.white))
+            ],
+          )),
       body: Column(
         children: [
           Expanded(
@@ -67,11 +71,9 @@ class AdidasStore extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
+                child: Card(
                   color: Colors.grey,
-                  padding: const EdgeInsets.all(2.5),
-                  margin: const EdgeInsets.all(6),
-                  height: 130,
+                  margin: const EdgeInsets.all(2.5),
                   child: Row(
                     children: [
                       Container(

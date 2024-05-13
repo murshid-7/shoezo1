@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await sharedpref.setBool(save_key, true);
 
       Navigator.of(ctx)
-          .pushReplacement(MaterialPageRoute(builder: (ctx) => SplashScreen()));
+          .pushReplacement(MaterialPageRoute(builder: (ctx) => BottomNav()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Incorrect username or password'),
