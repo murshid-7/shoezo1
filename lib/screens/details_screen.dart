@@ -186,7 +186,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     quantity: 1,
                   );
                   addShoesCart(cartitem);
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => CartPage()),
                   );

@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/brands_page.dart';
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 223, 220, 217),
       body: SafeArea(
           child: Column(
         children: [
@@ -57,11 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
 Widget buildShoeList(List<ShoeModel> shoe) {
   return shoe.isEmpty
       ? const Center(
-          child: Text('EMPTY'),
+          child: Text('Empty'),
         )
       : GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 2, mainAxisSpacing: 4),
+              crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 10),
           itemCount: shoe.length,
           itemBuilder: (context, index) {
             final data = shoe[index];
@@ -79,18 +81,21 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                 );
               },
               child: Card(
-                margin: EdgeInsets.all(5),
+                margin: EdgeInsets.only(left: 10, right: 10),
                 color: Colors.white,
                 child: Column(
                   children: [
-                    Card(
+                    SizedBox(
                         child: Image.file(
                       File(data.image),
-                      height: 120,
-                      width: 120,
-                      fit: BoxFit.fill,
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.contain,
                     )),
-                    Text(data.name),
+                    Text(
+                      data.name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     Text('Price:${data.price}'),
                     Text('Brand: ${data.catagory}'),
                   ],

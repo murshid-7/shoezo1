@@ -12,6 +12,7 @@ class NikeStore extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.black.withOpacity(0.9),
@@ -23,7 +24,7 @@ class NikeStore extends StatelessWidget {
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
-                  SizedBox(width: 70),
+              SizedBox(width: 70),
               Text('NIKE STORE', style: TextStyle(color: Colors.white))
             ],
           )),
@@ -69,24 +70,24 @@ class NikeStore extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(2.5),
-                  margin: const EdgeInsets.all(6),
-                  height: 130,
+                child: Card(
+                  color: Colors.grey[400],
+                  elevation: 5,
+                  margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 120,
                         width: 150,
                         child: Image.file(File(data.image)),
                       ),
                       Column(
                         children: [
-                          Padding(padding: EdgeInsets.all(10)),
-                          Text(data.name),
-                          Text(data.catagory),
-                          Text(data.price)
+                          Text(data.name,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Brand:${data.catagory}"),
+                          Text('Price: ${data.price}')
                         ],
                       ),
                     ],

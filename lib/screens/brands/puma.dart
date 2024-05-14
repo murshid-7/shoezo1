@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
-import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class PumaStore extends StatelessWidget {
   const PumaStore({Key? key});
@@ -13,7 +12,8 @@ class PumaStore extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
-      appBar:AppBar(
+      backgroundColor: const Color.fromARGB(255, 223, 220, 217),
+      appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.black.withOpacity(0.9),
           title: Row(
@@ -24,8 +24,8 @@ class PumaStore extends StatelessWidget {
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
-                  SizedBox(width: 70),
-              Text('PUMA STORE', style: TextStyle(color: Colors.white))
+              const SizedBox(width: 70),
+              const Text('PUMA STORE', style: TextStyle(color: Colors.white))
             ],
           )),
       body: Column(
@@ -70,11 +70,10 @@ class PumaStore extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(2.5),
-                  margin: const EdgeInsets.all(6),
-                  height: 130,
+                child: Card(
+                  color: Colors.grey[400],
+                  elevation: 5,
+                  margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
                       SizedBox(
@@ -84,10 +83,9 @@ class PumaStore extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Padding(padding: EdgeInsets.all(10)),
-                          Text(data.name),
-                          Text(data.catagory),
-                          Text(data.price)
+                          Text(data.name,style: const TextStyle(fontWeight: FontWeight.bold),),
+                          Text("Brand:${data.catagory}"),
+                          Text('Price: ${data.price}')
                         ],
                       ),
                     ],

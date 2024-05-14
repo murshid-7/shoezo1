@@ -3,9 +3,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shoezo_app/screens/add_product.dart';
+import 'package:shoezo_app/screens/cart_page.dart';
 import 'package:shoezo_app/screens/home_page.dart';
 import 'package:shoezo_app/screens/pie_chart.dart';
-
 
 class BottomNav extends StatefulWidget {
   @override
@@ -35,20 +35,26 @@ class _BottomNavState extends State<BottomNav> {
         onItemSelected: (index) => setState(() => _currentIndex = index),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.home,size: 30.0),
+            icon: Icon(Icons.home, size: 30.0),
             title: Text('Home'),
-            activeColor: Colors.black,
+            activeColor: Color.fromARGB(255, 0, 0, 0),
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.add,size: 30.0),
+            icon: Icon(Icons.add, size: 30.0),
             title: Text('Add Item'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.pie_chart,size: 30.0),
+            icon: Icon(Icons.pie_chart, size: 30.0),
             title: Text('Chart'),
+            activeColor: Colors.black,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.shopping_cart_sharp, size: 30.0),
+            title: Text('Cart'),
             activeColor: Colors.black,
             textAlign: TextAlign.center,
           ),
@@ -66,6 +72,7 @@ class _BottomNavState extends State<BottomNav> {
       case 2:
         return MyPieChart1();
       case 3:
+        return CartPage();
       default:
         return HomeScreen();
     }

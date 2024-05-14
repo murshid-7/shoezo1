@@ -1,15 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
 import 'package:shoezo_app/models/cart_model.dart';
 import 'package:shoezo_app/screens/edit_product_page.dart';
+import 'dart:io';
 
-class CartPage extends StatelessWidget {
+import 'package:shoezo_app/screens/home_page.dart';
+import 'package:shoezo_app/widgets/bottom_nav.dart';
+
+class CartPage extends StatefulWidget {
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     getAllShoesCart();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -22,11 +30,23 @@ class CartPage extends StatelessWidget {
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomNav(),
+                  )),
             ),
-            Text(
-              '$totalPrice',
-              style: TextStyle(color: Colors.white),
+            ValueListenableBuilder(
+              valueListenable: cartListNotifier,
+              builder: (context, List<CartModel> cart, Widget? child) {
+                return Text(
+                  'Total : $totalPrice',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    backgroundColor: Colors.black,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -79,7 +99,10 @@ class CartPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
                     onPressed: () {
                       deleteShoesCart(index);
                       getAllShoesCart();
@@ -105,15 +128,5 @@ class CartPage extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  double totalPrice = 0;
-  double cartTotalPrice() {
-    List<CartModel> cartItem = [];
-
-    for (var cartItem in cartItem) {
-      totalPrice += double.parse(cartItem.price);
-    }
-    return totalPrice;
   }
 }

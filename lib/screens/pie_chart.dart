@@ -16,12 +16,15 @@ class MyPieChart1 extends StatelessWidget {
             'BRANDS',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
-          PieChart(PieChartData(sections: [
-            PieChartSectionData(value: 100, color: Colors.blue),
-            PieChartSectionData(value: 35, color: Colors.red),
-            PieChartSectionData(value: 36, color: Colors.amber),
-            PieChartSectionData(value: 20, color: Colors.green)
-          ]))
+          Container(
+            margin: EdgeInsets.all(10.0),
+            child: PieChart(PieChartData(sections: [
+              PieChartSectionData(value: 100, color: Colors.blue),
+              PieChartSectionData(value: 40, color: Colors.red),
+              PieChartSectionData(value: 36, color: Colors.amber),
+              PieChartSectionData(value: 20, color: Colors.green)
+            ])),
+          ),
         ],
       ),
     );

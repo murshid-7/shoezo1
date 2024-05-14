@@ -16,8 +16,8 @@ class Drawer1 extends StatelessWidget {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       sharedPreferences.setBool('key', false);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen()));
     }
 
     return Drawer(
@@ -93,7 +93,10 @@ Widget DrawerBarTop() => Row(
       children: [
         Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.menu),
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+            ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -104,25 +107,31 @@ Widget DrawerBarTop() => Row(
             Container(
               margin: EdgeInsets.only(right: 5),
               height: 40,
-              width: 200,
+              width: 150,
               padding: EdgeInsets.all(5.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(9.0),
-                color: Colors.black87,
+                border: Border.all(color: Colors.grey),
+                color: Colors.grey[200],
               ),
               child: Row(
                 children: const [
                   Icon(
                     Icons.search_rounded,
                     size: 25,
-                    color: Colors.grey,
+                    color: Colors.black,
                   ),
                   SizedBox(width: 5.0),
-                  Text(
-                    "Search...",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
+                  Flexible(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Search...",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                        ),
+                        border: InputBorder.none,
+                      ),
                     ),
                   ),
                 ],

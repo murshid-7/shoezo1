@@ -7,6 +7,7 @@ import 'package:shoezo_app/screens/home_page.dart';
 import 'package:shoezo_app/screens/splash_screen.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -18,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
   void loginFunction(BuildContext ctx) async {
     final userName = usernameController.text.trim();
     final passWord = passwordController.text.trim();

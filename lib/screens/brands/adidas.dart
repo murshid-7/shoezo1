@@ -72,21 +72,21 @@ class AdidasStore extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.grey,
-                  margin: const EdgeInsets.all(2.5),
+                  color: Colors.grey[400],
+                  elevation: 5,
+                  margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 120,
                         width: 150,
                         child: Image.file(File(data.image)),
                       ),
                       Column(
                         children: [
-                          Padding(padding: EdgeInsets.all(10)),
-                          Text(data.name),
-                          Text(data.catagory),
-                          Text(data.price)
+                          Text(data.name,style: const TextStyle(fontWeight: FontWeight.bold),),
+                          Text("Brand:${data.catagory}"),
+                          Text('Price: ${data.price}')
                         ],
                       ),
                     ],

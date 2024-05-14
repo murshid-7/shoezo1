@@ -43,9 +43,11 @@ class _EditStudentState extends State<EditShoeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        
         backgroundColor: Colors.black,
-        title: const Text('Edit Details',style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Edit Details',
+          style: TextStyle(color: Colors.white),
+        ),
         automaticallyImplyLeading: true,
       ),
       body: SingleChildScrollView(
@@ -90,6 +92,7 @@ class _EditStudentState extends State<EditShoeScreen> {
               ElevatedButton(
                 onPressed: () {
                   editAll();
+
                   Navigator.pop(context);
                 },
                 child: const Text('Edit'),
@@ -120,7 +123,7 @@ class _EditStudentState extends State<EditShoeScreen> {
     }
   }
 
-   pickImageGallery() async {
+  pickImageGallery() async {
     final returntheImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returntheImage != null) {

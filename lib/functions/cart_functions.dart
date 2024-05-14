@@ -3,15 +3,18 @@ import 'package:hive/hive.dart';
 import 'package:shoezo_app/models/cart_model.dart';
 
 ValueNotifier<List<CartModel>> cartListNotifier = ValueNotifier([]);
-double totalPrice = 0; // Moved totalPrice to the top level
+double totalPrice = 0; 
 
 Future<void> addShoesCart(CartModel value) async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
   await shoeDB.add(value);
+  
+  // Update totalPrice by adding the price of the newly added item
+  totalPrice += double.parse(value.price);
+
   cartListNotifier.notifyListeners();
-  // Calculate total price after adding an item
-  calculateTotalPrice();
 }
+
 
 Future<void> getAllShoesCart() async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
@@ -24,9 +27,12 @@ Future<void> getAllShoesCart() async {
 
 Future<void> deleteShoesCart(index) async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
+  final deletedItem = cartListNotifier.value[index];
   await shoeDB.deleteAt(index);
-  // Calculate total price after deleting an item
-  calculateTotalPrice();
+  
+  // Deduct the price of the deleted item from the total price
+ 
+
   cartListNotifier.notifyListeners();
 }
 
