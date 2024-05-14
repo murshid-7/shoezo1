@@ -14,7 +14,7 @@ Future<void> addShoes(ShoeModel value) async {
   shoeListNotifier.notifyListeners();
 }
 
-Future<void> getAllShoes() async {
+Future getAllShoes() async {
   final shoeDB = await Hive.openBox<ShoeModel>('name');
 
   shoeListNotifier.value.clear();

@@ -30,7 +30,7 @@ class _CartPageState extends State<CartPage> {
                 Icons.arrow_back,
                 color: Colors.white,
               ),
-              onPressed: () => Navigator.push(
+              onPressed: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BottomNav(),
@@ -104,8 +104,8 @@ class _CartPageState extends State<CartPage> {
                       color: Colors.red,
                     ),
                     onPressed: () {
-                      deleteShoesCart(index);
                       getAllShoesCart();
+                      deleteShoesCart(index);
                     },
                   ),
                   IconButton(

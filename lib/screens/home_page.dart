@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
@@ -19,10 +20,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController searchController = TextEditingController();
+  String searchPr = '';
+  List<ShoeModel> searchList = [];
+  searchfn() async {
+    final allProducts = await getAllShoes();
+    shoeListNotifier.value = allProducts;
+  }
+
   @override
   void initState() {
     super.initState();
     getAllShoes();
+    searchfn();
+  }
+
+  searchResult() {
+    setState(() {
+      searchList = shoeListNotifier.value
+          .where((element) =>
+              element.name.toLowerCase().contains(searchPr.toLowerCase()))
+          .toList();
+    });
   }
 
   @override
@@ -32,7 +51,52 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          DrawerBarTop(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DrawerBarTop(),
+              Container(
+                margin: EdgeInsets.only(right: 5),
+                height: 40,
+                width: 150,
+                padding: EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9.0),
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.grey[200],
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.search_rounded,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 5.0),
+                    Flexible(
+                      child: TextFormField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                          hintText: "Search...",
+                          hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
+                          border: InputBorder.none,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            searchPr = value;
+                          });
+                          searchResult();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 5),
           roundedCarousel(),
           SizedBox(height: 5),
@@ -45,7 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ValueListenableBuilder(
               valueListenable: shoeListNotifier,
               builder: (context, List<ShoeModel> shoeList, Widget? child) {
-                return buildShoeList(shoeList);
+                final productList1 =
+                    searchList.isNotEmpty ? searchList : shoeList;
+                return buildShoeList(productList1);
               },
             ),
           ),

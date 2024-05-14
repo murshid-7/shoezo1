@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
 import 'package:shoezo_app/models/cart_model.dart';
 import 'package:shoezo_app/screens/cart_page.dart';
+import 'package:shoezo_app/widgets/bottom_nav.dart';
 import 'package:shoezo_app/widgets/designs.dart';
 
 class DetailScreen extends StatefulWidget {

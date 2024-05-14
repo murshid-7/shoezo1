@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/screens/admin_page.dart';
 import 'package:shoezo_app/screens/login_page.dart';
@@ -88,7 +89,9 @@ class Drawer1 extends StatelessWidget {
   }
 }
 
-Widget DrawerBarTop() => Row(
+DrawerBarTop() {
+  
+  return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Builder(
@@ -104,43 +107,12 @@ Widget DrawerBarTop() => Row(
         ),
         Row(
           children: [
-            Container(
-              margin: EdgeInsets.only(right: 5),
-              height: 40,
-              width: 150,
-              padding: EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9.0),
-                border: Border.all(color: Colors.grey),
-                color: Colors.grey[200],
-              ),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.search_rounded,
-                    size: 25,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 5.0),
-                  Flexible(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search...",
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                        ),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            
           ],
         ),
       ],
     );
+}
 
 Widget drawerWidget({
   required context,
