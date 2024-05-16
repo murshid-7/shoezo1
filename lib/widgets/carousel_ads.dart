@@ -6,7 +6,7 @@ Widget roundedCarousel() {
   return Column(
     children: [
       Container(
-        margin: EdgeInsets.all(10),
+        margin:const EdgeInsets.all(10),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: CarouselSlider(

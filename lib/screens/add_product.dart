@@ -25,7 +25,7 @@ class _AddProductState extends State<AddProduct> {
   ];
 
   Future<void> getImage() async {
-    final ImagePicker _picker = ImagePicker();
+     ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
@@ -38,8 +38,9 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     backgroundColor:const Color.fromARGB(255, 235, 233, 232),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme:const  IconThemeData(color: Colors.white),
         automaticallyImplyLeading: true,
         backgroundColor: Colors.black.withOpacity(0.9),
         foregroundColor: Colors.white,
@@ -57,7 +58,7 @@ class _AddProductState extends State<AddProduct> {
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: const Row(

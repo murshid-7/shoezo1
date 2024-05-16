@@ -36,20 +36,25 @@ class AdidasStore extends StatelessWidget {
               valueListenable: shoeListNotifier,
               builder:
                   (BuildContext context, List<ShoeModel> shoe, Widget? child) {
-                final filteredList = shoe
+               final  filteredList = shoe
                     .where(
                         (element) => element.catagory.toLowerCase() == 'adidas')
                     .toList();
                 return filteredGrid(context, filteredList);
+                
+                
               },
             ),
           )
         ],
       ),
     );
+    
   }
+  
 
   Widget filteredGrid(BuildContext context, List<ShoeModel> shoeList) {
+    
     return shoeList.isEmpty
         ? const Center(
             child: Text('Empty'),
@@ -71,6 +76,7 @@ class AdidasStore extends StatelessWidget {
                     ),
                   );
                 },
+                
                 child: Card(
                   color: Colors.grey[400],
                   elevation: 5,
@@ -86,14 +92,17 @@ class AdidasStore extends StatelessWidget {
                         children: [
                           Text(data.name,style: const TextStyle(fontWeight: FontWeight.bold),),
                           Text("Brand:${data.catagory}"),
-                          Text('Price: ${data.price}')
+                          Text('Price: ${data.price}'),
+                        
                         ],
                       ),
+                      
                     ],
                   ),
                 ),
               );
             },
           );
+        
   }
-}
+  }

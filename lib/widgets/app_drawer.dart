@@ -90,28 +90,25 @@ class Drawer1 extends StatelessWidget {
 }
 
 DrawerBarTop() {
-  
   return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Builder(
-          builder: (context) => IconButton(
-            icon: Icon(
-              Icons.menu,
-              size: 30,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Builder(
+        builder: (context) => IconButton(
+          icon: Icon(
+            Icons.menu,
+            size: 30,
           ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
         ),
-        Row(
-          children: [
-            
-          ],
-        ),
-      ],
-    );
+      ),
+      Row(
+        children: const [],
+      ),
+    ],
+  );
 }
 
 Widget drawerWidget({

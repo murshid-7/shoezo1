@@ -2,9 +2,7 @@
 
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/brands_page.dart';
@@ -47,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 223, 220, 217),
+      backgroundColor: Color.fromARGB(241, 223, 220, 217),
       body: SafeArea(
           child: Column(
         children: [
@@ -101,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
           roundedCarousel(),
           SizedBox(height: 5),
           Text(
-            'Shop Your Favourite Brands From Here ',
+            'Shop Your Favourite Brands From Here By Click the Logo',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           BrandsLogo(),

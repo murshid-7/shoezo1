@@ -3,10 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
-import 'package:shoezo_app/screens/home_page.dart';
-import 'package:shoezo_app/screens/splash_screen.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

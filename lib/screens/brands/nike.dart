@@ -12,7 +12,7 @@ class NikeStore extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllShoes();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 223, 220, 217),
+      backgroundColor: const Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.black.withOpacity(0.9),
@@ -20,12 +20,12 @@ class NikeStore extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
-              SizedBox(width: 70),
-              Text('NIKE STORE', style: TextStyle(color: Colors.white))
+             const SizedBox(width: 70),
+             const Text('NIKE STORE', style: TextStyle(color: Colors.white))
             ],
           )),
       body: Column(

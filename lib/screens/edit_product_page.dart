@@ -42,13 +42,19 @@ class _EditStudentState extends State<EditShoeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         centerTitle: true,
         backgroundColor: Colors.black,
         title: const Text(
           'Edit Details',
           style: TextStyle(color: Colors.white),
         ),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -57,17 +63,22 @@ class _EditStudentState extends State<EditShoeScreen> {
             children: [
               const SizedBox(height: 10),
               CircleAvatar(
-                radius: 80,
+                radius: 90,
                 backgroundImage: selectedImage != null
                     ? FileImage(selectedImage!)
                     : FileImage(File(widget.imagePath!)),
               ),
               const SizedBox(height: 10),
               ElevatedButton.icon(
+                style: const ButtonStyle(
+                    iconColor: MaterialStatePropertyAll(Colors.black)),
                 onPressed: () {
                   pickImageGallery();
                 },
-                label: const Text('Gallery'),
+                label: const Text(
+                  'Gallery',
+                  style: TextStyle(color: Colors.black),
+                ),
                 icon: const Icon(Icons.image),
               ),
               const SizedBox(height: 20),
@@ -95,7 +106,10 @@ class _EditStudentState extends State<EditShoeScreen> {
 
                   Navigator.pop(context);
                 },
-                child: const Text('Edit'),
+                child: const Text(
+                  'Edit',
+                  style: TextStyle(color: Colors.black),
+                ),
               )
             ],
           ),

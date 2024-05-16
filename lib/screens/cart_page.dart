@@ -5,7 +5,6 @@ import 'package:shoezo_app/models/cart_model.dart';
 import 'package:shoezo_app/screens/edit_product_page.dart';
 import 'dart:io';
 
-import 'package:shoezo_app/screens/home_page.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class CartPage extends StatefulWidget {
@@ -19,6 +18,7 @@ class _CartPageState extends State<CartPage> {
     getAllShoesCart();
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
@@ -82,7 +82,7 @@ class _CartPageState extends State<CartPage> {
   }) {
     return Column(
       children: [
-        SizedBox(
+        const  SizedBox (
           height: 30,
         ),
         SizedBox(
@@ -104,6 +104,7 @@ class _CartPageState extends State<CartPage> {
                       color: Colors.red,
                     ),
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(),));
                       getAllShoesCart();
                       deleteShoesCart(index);
                     },

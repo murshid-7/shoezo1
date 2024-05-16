@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (userLogin == null || userLogin == false) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginScreen()));
+          MaterialPageRoute(builder: (context) =>const LoginScreen()));
     } else {
       checkloginFail();
     }

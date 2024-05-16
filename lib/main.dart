@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shoezo_app/models/cart_model.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
-import 'package:shoezo_app/screens/login_page.dart';
 import 'package:shoezo_app/screens/splash_screen.dart';
 
 // ignore: constant_identifier_names
