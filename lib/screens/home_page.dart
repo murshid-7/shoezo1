@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       searchList = shoeListNotifier.value
           .where((element) =>
-              element.name.toLowerCase().contains(searchPr.toLowerCase()))
+              element.price.toLowerCase().contains(searchPr.toLowerCase()))
           .toList();
     });
   }
@@ -140,6 +140,7 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                       price: data.price.toString(),
                       disciption: '',
                       image: data.image,
+                      
                     ),
                   ),
                 );

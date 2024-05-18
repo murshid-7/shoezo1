@@ -11,17 +11,18 @@ Future<void> addShoesCart(CartModel value) async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
   await shoeDB.add(value);
 
-  // Update totalPrice by adding the price of the newly added item
   totalPrice += double.parse(value.price);
 
   cartListNotifier.notifyListeners();
 }
+// future<void>Addshoescart(cartmodel value)async{
+// final shoedb=await hive.initflutter}
 
 Future<void> getAllShoesCart() async {
   final shoeDB = await Hive.openBox<CartModel>('cart');
   cartListNotifier.value.clear();
   cartListNotifier.value.addAll(shoeDB.values);
-  // Calculate total price after fetching items
+
   calculateTotalPrice();
   cartListNotifier.notifyListeners();
 }
@@ -31,14 +32,13 @@ Future<void> deleteShoesCart(index) async {
   final deletedItem = cartListNotifier.value[index];
   await shoeDB.deleteAt(index);
 
-  // Deduct the price of the deleted item from the total price
-
   cartListNotifier.notifyListeners();
 }
 
 void calculateTotalPrice() {
-  totalPrice = 0; // Reset totalPrice
+  totalPrice = 0;
   for (var item in cartListNotifier.value) {
     totalPrice += double.parse(item.price);
+   
   }
 }

@@ -24,7 +24,7 @@ class BrandsLogo extends StatelessWidget {
             'https://seeklogo.com/images/A/adidas-logo-DE36EE9B0E-seeklogo.com.png',
             () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const AdidasStore()));
+              .push(MaterialPageRoute(builder: (context) => AdidasStore()));
         }),
         brandLogos(
             'https://seeklogo.com/images/N/Nike_Plus-logo-548F1B3E8F-seeklogo.com.png',

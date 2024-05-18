@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
 
 class AdidasStore extends StatelessWidget {
-  const AdidasStore({Key? key});
+  AdidasStore({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,25 +37,20 @@ class AdidasStore extends StatelessWidget {
               valueListenable: shoeListNotifier,
               builder:
                   (BuildContext context, List<ShoeModel> shoe, Widget? child) {
-               final  filteredList = shoe
+                final filteredList = shoe
                     .where(
                         (element) => element.catagory.toLowerCase() == 'adidas')
                     .toList();
                 return filteredGrid(context, filteredList);
-                
-                
               },
             ),
           )
         ],
       ),
     );
-    
   }
-  
 
   Widget filteredGrid(BuildContext context, List<ShoeModel> shoeList) {
-    
     return shoeList.isEmpty
         ? const Center(
             child: Text('Empty'),
@@ -63,6 +59,7 @@ class AdidasStore extends StatelessWidget {
             itemCount: shoeList.length,
             itemBuilder: (context, index) {
               final data = shoeList[index];
+
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
@@ -76,7 +73,6 @@ class AdidasStore extends StatelessWidget {
                     ),
                   );
                 },
-                
                 child: Card(
                   color: Colors.grey[400],
                   elevation: 5,
@@ -90,19 +86,19 @@ class AdidasStore extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text(data.name,style: const TextStyle(fontWeight: FontWeight.bold),),
+                          Text(
+                            data.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           Text("Brand:${data.catagory}"),
                           Text('Price: ${data.price}'),
-                        
                         ],
                       ),
-                      
                     ],
                   ),
                 ),
               );
             },
           );
-        
   }
-  }
+}

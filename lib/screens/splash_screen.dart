@@ -1,3 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo_app/main.dart';
@@ -5,9 +9,10 @@ import 'package:shoezo_app/screens/login_page.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
+  
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -24,14 +29,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (userLogin == null || userLogin == false) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) =>const LoginScreen()));
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
     } else {
       checkloginFail();
     }
   }
 
   Future<void> checkloginFail() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return BottomNav();
     }));

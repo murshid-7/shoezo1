@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
@@ -18,6 +20,7 @@ class _CartPageState extends State<CartPage> {
     getAllShoesCart();
 
     return Scaffold(
+    
       backgroundColor: Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -73,6 +76,8 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
+  
+
   Widget ProductItem({
     required BuildContext context,
     required int index,
@@ -82,7 +87,7 @@ class _CartPageState extends State<CartPage> {
   }) {
     return Column(
       children: [
-        const  SizedBox (
+        const SizedBox(
           height: 30,
         ),
         SizedBox(
@@ -90,7 +95,7 @@ class _CartPageState extends State<CartPage> {
           child: Card(
             elevation: 6,
             color: Colors.white,
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             child: ListTile(
               leading: Image.file(File(image)),
               title: Text(title),
@@ -99,18 +104,50 @@ class _CartPageState extends State<CartPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.delete,
                       color: Colors.red,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(),));
-                      getAllShoesCart();
-                      deleteShoesCart(index);
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Confirm Delete'),
+                              content: const Text(
+                                  'Are you sure want to delete this item?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'cancel',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    getAllShoesCart();
+                                    deleteShoesCart(index);
+                                    Navigator.of(context).pop();
+                                    setState(() {});
+                                  },
+                                  child: const Text(
+                                    'Delete',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                )
+                              ],
+                            );
+                          });
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(),));
+                      // getAllShoesCart();
+                      // deleteShoesCart(index);
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => EditShoeScreen(

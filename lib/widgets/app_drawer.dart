@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shoezo_app/main.dart';
 import 'package:shoezo_app/screens/admin_page.dart';
 import 'package:shoezo_app/screens/login_page.dart';
+import 'package:shoezo_app/screens/splash_screen.dart';
 
 class Drawer1 extends StatelessWidget {
   const Drawer1({
@@ -16,9 +18,9 @@ class Drawer1 extends StatelessWidget {
     Future<void> LogoutFuncion() async {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      sharedPreferences.setBool('key', false);
+      sharedPreferences.setBool(save_key, false);
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginScreen()));
+          MaterialPageRoute(builder: (context) => SplashScreen()));
     }
 
     return Drawer(

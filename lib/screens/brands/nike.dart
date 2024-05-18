@@ -6,6 +6,13 @@ import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
 
 class NikeStore extends StatelessWidget {
+  double totalcart() {
+    double totalp = 0;
+    for (var element in cartListNotifier.value) {
+      totalp += double.parse(element.price);
+    }
+    return totalp;
+  }
   const NikeStore({Key? key});
 
   @override

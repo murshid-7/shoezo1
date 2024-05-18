@@ -10,7 +10,9 @@ ValueNotifier<List<CartModel>> cartListNotifier = ValueNotifier([]);
 Future<void> addShoes(ShoeModel value) async {
   final shoeDB = await Hive.openBox<ShoeModel>('name');
   await shoeDB.add(value);
+
   shoeListNotifier.value.add(value);
+
   shoeListNotifier.notifyListeners();
 }
 
@@ -46,3 +48,10 @@ Future<void> deleteAllDataShoes() async {
   shoeListNotifier.notifyListeners();
   cartListNotifier.notifyListeners();
 }
+  double productTotalPrice() {
+    double total = 0;
+    for (var item in shoeListNotifier.value) {
+      total += double.parse(item.price);
+    }
+    return total;
+  }
