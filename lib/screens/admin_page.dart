@@ -19,14 +19,20 @@ class AdminScreen extends StatelessWidget {
             //   },
             //   child: Text('View Products',style: TextStyle(color: Colors.white),),
             // ),
-           const  SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             ElevatedButton(
-              style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.black)),
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black)),
               onPressed: () {
                 deleteAllDataShoes();
               },
-              child:const  Text('Delete All Products',style: TextStyle(color: Colors.red),),
-            )
+              child: const Text(
+                'Delete All Products',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
           ],
         ),
       ),

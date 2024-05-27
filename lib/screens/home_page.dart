@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       searchList = shoeListNotifier.value
           .where((element) =>
-              element.price.toLowerCase().contains(searchPr.toLowerCase()))
+              element.name.toLowerCase().contains(searchPr.toLowerCase()))
           .toList();
     });
   }
@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[200],
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.search_rounded,
@@ -126,6 +127,7 @@ Widget buildShoeList(List<ShoeModel> shoe) {
           child: Text('Empty'),
         )
       : GridView.builder(
+          padding: EdgeInsets.all(5),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 10),
           itemCount: shoe.length,
@@ -140,7 +142,6 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                       price: data.price.toString(),
                       disciption: '',
                       image: data.image,
-                      
                     ),
                   ),
                 );

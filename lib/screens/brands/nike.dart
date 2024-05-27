@@ -6,13 +6,6 @@ import 'package:shoezo_app/models/shoe_model.dart';
 import 'package:shoezo_app/screens/details_screen.dart';
 
 class NikeStore extends StatelessWidget {
-  double totalcart() {
-    double totalp = 0;
-    for (var element in cartListNotifier.value) {
-      totalp += double.parse(element.price);
-    }
-    return totalp;
-  }
   const NikeStore({Key? key});
 
   @override
@@ -31,8 +24,8 @@ class NikeStore extends StatelessWidget {
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
-             const SizedBox(width: 70),
-             const Text('NIKE STORE', style: TextStyle(color: Colors.white))
+              const SizedBox(width: 70),
+              const Text('NIKE STORE', style: TextStyle(color: Colors.white))
             ],
           )),
       body: Column(
@@ -78,7 +71,7 @@ class NikeStore extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.grey[400],
+                  color: Colors.white,
                   elevation: 5,
                   margin: const EdgeInsets.all(10),
                   child: Row(

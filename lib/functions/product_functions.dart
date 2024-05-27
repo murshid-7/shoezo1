@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
@@ -48,10 +50,11 @@ Future<void> deleteAllDataShoes() async {
   shoeListNotifier.notifyListeners();
   cartListNotifier.notifyListeners();
 }
-  double productTotalPrice() {
-    double total = 0;
-    for (var item in shoeListNotifier.value) {
-      total += double.parse(item.price);
-    }
-    return total;
+
+double productTotalPrice() {
+  double total = 0;
+  for (var item in shoeListNotifier.value) {
+    total += double.parse(item.price);
   }
+  return total;
+}

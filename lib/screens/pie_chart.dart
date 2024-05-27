@@ -50,21 +50,21 @@ class MyPieChart1 extends StatelessWidget {
                         value: totalPrice,
                         color: Colors.blue,
                         showTitle: true,
-                        title: 'Cart total: $totalPrice',
+                        title: '$totalPrice',
                         titleStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
                         ),
-                        titlePositionPercentageOffset: 2,
+                        titlePositionPercentageOffset: 1.6,
                       ),
                       PieChartSectionData(
                         value: productTotalPrice(),
                         color: Colors.red,
                         showTitle: true,
-                        title: 'All product total: ${productTotalPrice()}',
+                        title: '${productTotalPrice()}',
                         titleStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
                         ),
-                        titlePositionPercentageOffset: 2,
+                        titlePositionPercentageOffset: 1.6,
                       ),
                       // PieChartSectionData(value: 36, color: Colors.amber),
                       // PieChartSectionData(value: 20, color: Colors.green)
@@ -74,15 +74,25 @@ class MyPieChart1 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        padding: const EdgeInsets.all(5),
+                        height: 35,
                         margin: const EdgeInsets.only(bottom: 30),
                         color: Colors.red,
-                        child:const  Text('Total Price'),
+                        child: const Text('All Products total',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white)),
                       ),
-                     const SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       Container(
+                        padding: const EdgeInsets.all(5),
+                        height: 35,
                         margin: const EdgeInsets.only(bottom: 30),
                         color: Colors.blue,
-                        child: const Text('Total Price'),
+                        child: const Text('Cart total ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white)),
                       )
                     ],
                   )

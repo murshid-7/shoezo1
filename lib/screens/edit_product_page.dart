@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import 'package:shoezo_app/models/shoe_model.dart';
 class EditShoeScreen extends StatefulWidget {
   String name;
   String price;
+
   String? discription;
   int index;
   dynamic imagePath;
@@ -129,7 +132,7 @@ class _EditStudentState extends State<EditShoeScreen> {
         image: image,
         price: price,
         quantity: 1,
-        catagory: '',
+        catagory: "",
       );
       editShoes(widget.index, update);
     } else {

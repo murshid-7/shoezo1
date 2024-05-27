@@ -71,7 +71,7 @@ class PumaStore extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.grey[400],
+                  color: Colors.white,
                   elevation: 5,
                   margin: const EdgeInsets.all(10),
                   child: Row(
@@ -83,7 +83,10 @@ class PumaStore extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text(data.name,style: const TextStyle(fontWeight: FontWeight.bold),),
+                          Text(
+                            data.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           Text("Brand:${data.catagory}"),
                           Text('Price: ${data.price}')
                         ],

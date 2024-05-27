@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
 import 'package:shoezo_app/models/cart_model.dart';
 import 'package:shoezo_app/screens/edit_product_page.dart';
@@ -10,6 +7,8 @@ import 'dart:io';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class CartPage extends StatefulWidget {
+  const CartPage({super.key});
+
   @override
   State<CartPage> createState() => _CartPageState();
 }
@@ -20,8 +19,7 @@ class _CartPageState extends State<CartPage> {
     getAllShoesCart();
 
     return Scaffold(
-    
-      backgroundColor: Color.fromARGB(255, 223, 220, 217),
+      backgroundColor:const Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
@@ -75,8 +73,6 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
-
-  
 
   Widget ProductItem({
     required BuildContext context,

@@ -186,9 +186,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     quantity: 1,
                   );
                   addShoesCart(cartitem);
+
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => CartPage()),
+                    MaterialPageRoute(builder: (context) => const CartPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

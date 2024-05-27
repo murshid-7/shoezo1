@@ -17,6 +17,7 @@ class _AddProductState extends State<AddProduct> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController discriptionController = TextEditingController();
+
   String dropdown = 'Adidas';
   var items = [
     'Adidas',
@@ -25,7 +26,7 @@ class _AddProductState extends State<AddProduct> {
   ];
 
   Future<void> getImage() async {
-     ImagePicker _picker = ImagePicker();
+    ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
@@ -38,9 +39,9 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor:const Color.fromARGB(255, 235, 233, 232),
+      backgroundColor: const Color.fromARGB(255, 235, 233, 232),
       appBar: AppBar(
-        iconTheme:const  IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         automaticallyImplyLeading: true,
         backgroundColor: Colors.black.withOpacity(0.9),
         foregroundColor: Colors.white,
@@ -163,6 +164,7 @@ class _AddProductState extends State<AddProduct> {
     final name = nameController.text.trim();
     final price = priceController.text.trim();
     final discription = discriptionController.text.trim();
+
     if (name.isNotEmpty || price.isNotEmpty || discription.isNotEmpty) {
       final shoe = ShoeModel(
         id: 1,

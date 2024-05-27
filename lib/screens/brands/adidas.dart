@@ -74,8 +74,8 @@ class AdidasStore extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.grey[400],
-                  elevation: 5,
+                  color: Colors.white,
+                  elevation: 7,
                   margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
