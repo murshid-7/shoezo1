@@ -14,7 +14,7 @@ class ShoeModel {
   @HiveField(4)
   final int quantity;
   @HiveField(5)
-  final String catagory;
+  final String? catagory;
 
   ShoeModel({
     required this.id,

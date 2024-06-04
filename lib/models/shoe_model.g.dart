@@ -22,7 +22,7 @@ class ShoeModelAdapter extends TypeAdapter<ShoeModel> {
       image: fields[2] as String,
       price: fields[3] as String,
       quantity: fields[4] as int,
-      catagory: fields[5] as String,
+      catagory: fields[5] as String?,
     );
   }
 

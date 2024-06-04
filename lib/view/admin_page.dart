@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/functions/product_functions.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/product_provider.dart';
 
 class AdminScreen extends StatelessWidget {
   const AdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -26,7 +28,7 @@ class AdminScreen extends StatelessWidget {
               style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.black)),
               onPressed: () {
-                deleteAllDataShoes();
+              productProvider. deleteAllProduct();
               },
               child: const Text(
                 'Delete All Products',

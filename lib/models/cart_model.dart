@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 part 'cart_model.g.dart';
+
 @HiveType(typeId: 2)
 class CartModel {
   @HiveField(0)
@@ -12,8 +13,12 @@ class CartModel {
   final String price;
   @HiveField(4)
   final int quantity;
+  @HiveField(5)
+  final String category;
 
-  CartModel({
+  CartModel(
+     {
+    required  this.category,
     required this.id,
     required this.name,
     required this.image,

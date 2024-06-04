@@ -1,20 +1,21 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/product_provider.dart';
 import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
-import 'package:shoezo_app/screens/details_screen.dart';
+import 'package:shoezo_app/view/details_screen.dart';
 
-class AdidasStore extends StatelessWidget {
-  AdidasStore({Key? key});
+class NikeStore extends StatelessWidget {
+  const NikeStore({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    getAllShoes();
+    Provider.of<ProductProvider>(context, listen: false).getAllProducts();
+
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.black.withOpacity(0.9),
@@ -22,24 +23,34 @@ class AdidasStore extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   )),
-              SizedBox(width: 70),
-              Text('ADIDAS STORE', style: TextStyle(color: Colors.white))
+              const SizedBox(width: 70),
+              const Text('NIKE STORE', style: TextStyle(color: Colors.white))
             ],
           )),
       body: Column(
         children: [
           Expanded(
-            child: ValueListenableBuilder<List<ShoeModel>>(
-              valueListenable: shoeListNotifier,
-              builder:
-                  (BuildContext context, List<ShoeModel> shoe, Widget? child) {
-                final filteredList = shoe
+            child:
+                // ValueListenableBuilder<List<ShoeModel>>(
+                //   valueListenable: shoeListNotifier,
+                //   builder:
+                //       (BuildContext context, List<ShoeModel> shoe, Widget? child) {
+                //     final filteredList = shoe
+                //         .where(
+                //             (element) => element.catagory?.toLowerCase() == 'nike')
+                //         .toList();
+                //     return filteredGrid(context, filteredList);
+                //   },
+                // ),
+                Consumer<ProductProvider>(
+              builder: (context, productProvider, child) {
+                final filteredList = productProvider.shoeList
                     .where(
-                        (element) => element.catagory.toLowerCase() == 'adidas')
+                        (element) => element.catagory?.toLowerCase() == 'nike')
                     .toList();
                 return filteredGrid(context, filteredList);
               },
@@ -59,23 +70,24 @@ class AdidasStore extends StatelessWidget {
             itemCount: shoeList.length,
             itemBuilder: (context, index) {
               final data = shoeList[index];
-
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => DetailScreen(
+                        id: data.id,
                         name: data.name,
                         price: data.price,
-                        disciption: '',
+                        quantity: data.quantity,
                         image: data.image,
+                        category: data.catagory!,
                       ),
                     ),
                   );
                 },
                 child: Card(
                   color: Colors.white,
-                  elevation: 7,
+                  elevation: 5,
                   margin: const EdgeInsets.all(10),
                   child: Row(
                     children: [
@@ -86,12 +98,11 @@ class AdidasStore extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text(
-                            data.name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                          Text(data.name,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                           Text("Brand:${data.catagory}"),
-                          Text('Price: ${data.price}'),
+                          Text('Price: ${data.price}')
                         ],
                       ),
                     ],

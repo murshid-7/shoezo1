@@ -3,10 +3,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/functions/product_functions.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/product_provider.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
-import 'package:shoezo_app/screens/brands_page.dart';
-import 'package:shoezo_app/screens/details_screen.dart';
+import 'package:shoezo_app/view/brands_page.dart';
+import 'package:shoezo_app/view/details_screen.dart';
 import 'package:shoezo_app/widgets/app_drawer.dart';
 import 'package:shoezo_app/widgets/carousel_ads.dart';
 
@@ -18,37 +19,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController searchController = TextEditingController();
-  String searchPr = '';
-  List<ShoeModel> searchList = [];
-  searchfn() async {
-    final allProducts = await getAllShoes();
-    shoeListNotifier.value = allProducts;
-  }
+  // String searchPr = '';
+  // List<ShoeModel> searchList = [];
+  // searchfn() async {
+  //   final allProducts = await getAllShoes();
+  //   shoeListNotifier.value = allProducts;
+  // }
 
   @override
   void initState() {
     super.initState();
-    getAllShoes();
-    searchfn();
+    Provider.of<ProductProvider>(context, listen: false).getAllProducts();
+
+    // searchfn();
   }
 
-  searchResult() {
-    setState(() {
-      searchList = shoeListNotifier.value
-          .where((element) =>
-              element.name.toLowerCase().contains(searchPr.toLowerCase()))
-          .toList();
-    });
-  }
+  // searchResult() {
+  //   setState(() {
+  //     searchList = shoeListNotifier.value
+  //         .where((element) =>
+  //             element.name.toLowerCase().contains(searchPr.toLowerCase()))
+  //         .toList();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Color.fromARGB(241, 223, 220, 217),
       body: SafeArea(
           child: Column(
         children: [
+          SizedBox(
+            height: 50,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -74,22 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 5.0),
                     Flexible(
                       child: TextFormField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                          hintText: "Search...",
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
+                          controller: productProvider.searchController,
+                          decoration: InputDecoration(
+                            hintText: "Search...",
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
+                            border: InputBorder.none,
                           ),
-                          border: InputBorder.none,
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            searchPr = value;
-                          });
-                          searchResult();
-                        },
-                      ),
+                          onChanged: (value) => productProvider
+                              .search(productProvider.searchController.text)),
                     ),
                   ],
                 ),
@@ -105,11 +107,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BrandsLogo(),
           Expanded(
-            child: ValueListenableBuilder(
-              valueListenable: shoeListNotifier,
-              builder: (context, List<ShoeModel> shoeList, Widget? child) {
-                final productList1 =
-                    searchList.isNotEmpty ? searchList : shoeList;
+            child: Consumer<ProductProvider>(
+              builder: (context, value, child) {
+                final productList1 = productProvider.searchList.isNotEmpty
+                    ? productProvider.searchList
+                    : productProvider.shoeList;
                 return buildShoeList(productList1);
               },
             ),
@@ -140,8 +142,10 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                     builder: (context) => DetailScreen(
                       name: data.name,
                       price: data.price.toString(),
-                      disciption: '',
+                      quantity: data.quantity,
                       image: data.image,
+                      category: data.catagory!,
+                      id: data.id,
                     ),
                   ),
                 );

@@ -1,8 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/cart_provider.dart';
+import 'package:shoezo_app/controller/product_provider.dart';
 import 'package:shoezo_app/functions/cart_functions.dart';
-import 'package:shoezo_app/functions/product_functions.dart';
 import 'package:shoezo_app/widgets/bottom_nav.dart';
 
 class MyPieChart1 extends StatelessWidget {
@@ -10,8 +11,14 @@ class MyPieChart1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getAllShoes();
-    getAllShoesCart();
+    // getAllShoes();
+
+    final productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    productProvider.getAllProducts;
+    cartProvider.getAllCart();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -47,20 +54,20 @@ class MyPieChart1 extends StatelessWidget {
                   Expanded(
                     child: PieChart(PieChartData(sections: [
                       PieChartSectionData(
-                        value: totalPrice,
+                        value: cartProvider.totalPrice,
                         color: Colors.blue,
                         showTitle: true,
-                        title: '$totalPrice',
+                        title: '${cartProvider.totalPrice}',
                         titleStyle: const TextStyle(
                           fontWeight: FontWeight.w900,
                         ),
                         titlePositionPercentageOffset: 1.6,
                       ),
                       PieChartSectionData(
-                        value: productTotalPrice(),
+                        value: productProvider.productTotalPrice(),
                         color: Colors.red,
                         showTitle: true,
-                        title: '${productTotalPrice()}',
+                        title: '${productProvider.productTotalPrice()}',
                         titleStyle: const TextStyle(
                           fontWeight: FontWeight.w900,
                         ),

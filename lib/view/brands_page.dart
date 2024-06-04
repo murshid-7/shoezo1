@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/screens/brands/adidas.dart';
-import 'package:shoezo_app/screens/brands/nike.dart';
-import 'package:shoezo_app/screens/brands/puma.dart';
+import 'package:shoezo_app/view/brands/adidas.dart';
+import 'package:shoezo_app/view/brands/nike.dart';
+import 'package:shoezo_app/view/brands/puma.dart';
 
 class BrandsLogo extends StatelessWidget {
   const BrandsLogo({

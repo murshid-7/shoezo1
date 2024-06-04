@@ -2,10 +2,10 @@
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/screens/add_product.dart';
-import 'package:shoezo_app/screens/cart_page.dart';
-import 'package:shoezo_app/screens/home_page.dart';
-import 'package:shoezo_app/screens/pie_chart.dart';
+import 'package:shoezo_app/view/add_product.dart';
+import 'package:shoezo_app/view/cart_page.dart';
+import 'package:shoezo_app/view/home_page.dart';
+import 'package:shoezo_app/view/pie_chart.dart';
 
 class BottomNav extends StatefulWidget {
   @override

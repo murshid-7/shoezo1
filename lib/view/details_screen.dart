@@ -1,29 +1,30 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/functions/cart_functions.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/cart_provider.dart';
 import 'package:shoezo_app/models/cart_model.dart';
-import 'package:shoezo_app/screens/cart_page.dart';
+import 'package:shoezo_app/view/cart_page.dart';
 import 'package:shoezo_app/widgets/designs.dart';
 
-class DetailScreen extends StatefulWidget {
+// ignore: must_be_immutable
+class DetailScreen extends StatelessWidget {
   final String name;
   final String price;
-  final String disciption;
+  final int quantity;
   final String image;
-  const DetailScreen({
+  final String category;
+  final int id;
+  DetailScreen({
     super.key,
     required this.name,
     required this.price,
-    required this.disciption,
+    required this.quantity,
     required this.image,
+    required this.category,
+    required this.id,
   });
 
-  @override
-  _DetailScreenState createState() => _DetailScreenState();
-}
-
-class _DetailScreenState extends State<DetailScreen> {
   List<Color> colors = [
     Colors.black,
     Colors.yellow,
@@ -33,6 +34,8 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -48,14 +51,14 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            headerContainer(image: widget.image),
+            headerContainer(image: image),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.name,
+                    name,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -63,7 +66,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    widget.disciption,
+                    quantity.toString(),
                     style: const TextStyle(
                       fontSize: 15,
                     ),
@@ -133,7 +136,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               color: Colors.white,
                             ),
                             Text(
-                              widget.price,
+                              price,
                               style: const TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w700,
@@ -179,18 +182,13 @@ class _DetailScreenState extends State<DetailScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   final cartitem = CartModel(
-                    id: 1,
-                    name: widget.name,
-                    image: widget.image,
-                    price: widget.price,
-                    quantity: 1,
-                  );
-                  addShoesCart(cartitem);
-
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CartPage()),
-                  );
+                      id: id,
+                      name: name,
+                      image: image,
+                      price: price,
+                      quantity: 1,
+                      category: category);
+                  cartProvider.addToCart(cartitem);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,

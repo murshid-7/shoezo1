@@ -1,19 +1,20 @@
 // ignore_for_file: must_be_immutable
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shoezo_app/functions/product_functions.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/add_provider.dart';
+import 'package:shoezo_app/controller/product_provider.dart';
 import 'package:shoezo_app/models/shoe_model.dart';
 
 class EditShoeScreen extends StatefulWidget {
   String name;
   String price;
-
   String? discription;
   int index;
   dynamic imagePath;
+  final category;
   EditShoeScreen({
     super.key,
     required this.name,
@@ -21,6 +22,7 @@ class EditShoeScreen extends StatefulWidget {
     this.discription,
     required this.index,
     required this.imagePath,
+    this.category,
   });
 
   @override
@@ -28,14 +30,14 @@ class EditShoeScreen extends StatefulWidget {
 }
 
 class _EditStudentState extends State<EditShoeScreen> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _priceController = TextEditingController();
+  TextEditingController nameEditController = TextEditingController();
+  TextEditingController priceEditController = TextEditingController();
 
   File? selectedImage;
   @override
   void initState() {
-    _nameController = TextEditingController(text: widget.name);
-    _priceController = TextEditingController(text: widget.price);
+    nameEditController = TextEditingController(text: widget.name);
+    priceEditController = TextEditingController(text: widget.price);
     selectedImage = widget.imagePath != '' ? File(widget.imagePath) : null;
 
     super.initState();
@@ -65,18 +67,20 @@ class _EditStudentState extends State<EditShoeScreen> {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              CircleAvatar(
-                radius: 90,
-                backgroundImage: selectedImage != null
-                    ? FileImage(selectedImage!)
-                    : FileImage(File(widget.imagePath!)),
+              Consumer<AddProvider>(
+                builder: (context, value, child) => CircleAvatar(
+                    radius: 58,
+                    backgroundImage: value.brand != null
+                        ? Image.file(value.brand!).image
+                        : const AssetImage(
+                            'assets/NicePng_men-shoes-png_3611327.png')),
               ),
               const SizedBox(height: 10),
               ElevatedButton.icon(
                 style: const ButtonStyle(
                     iconColor: MaterialStatePropertyAll(Colors.black)),
                 onPressed: () {
-                  pickImageGallery();
+                  pickImage(context);
                 },
                 label: const Text(
                   'Gallery',
@@ -86,7 +90,7 @@ class _EditStudentState extends State<EditShoeScreen> {
               ),
               const SizedBox(height: 20),
               TextField(
-                controller: _nameController,
+                controller: nameEditController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -95,7 +99,7 @@ class _EditStudentState extends State<EditShoeScreen> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: _priceController,
+                controller: priceEditController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -122,31 +126,59 @@ class _EditStudentState extends State<EditShoeScreen> {
   }
 
   Future<void> editAll() async {
-    final name = _nameController.text.trim();
-    final price = _priceController.text.trim();
-    final image = selectedImage!.path;
+    final productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    final pro = Provider.of<AddProvider>(context, listen: false);
+    final existingCategory = widget.category;
+
+    final name = nameEditController.text.trim();
+    final price = priceEditController.text.trim();
+    final image = pro.brand!.path;
     if (name.isNotEmpty || price.isNotEmpty) {
       final update = ShoeModel(
-        id: 1,
-        name: name,
-        image: image,
-        price: price,
-        quantity: 1,
-        catagory: "",
-      );
-      editShoes(widget.index, update);
+          id: 1,
+          name: name,
+          image: image,
+          price: price,
+          quantity: 1,
+          catagory: existingCategory);
+      productProvider.updateShoe(widget.index, update);
     } else {
       return;
     }
   }
 
-  pickImageGallery() async {
-    final returntheImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (returntheImage != null) {
-      setState(() {
-        selectedImage = File(returntheImage.path);
-      });
-    }
+  Future<void> pickImage(BuildContext context) async {
+    final pro = Provider.of<AddProvider>(context, listen: false);
+    await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 150,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text('Camera'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pro.getImage(ImageSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.image),
+                title: const Text('Gallery'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pro.getImage(ImageSource.gallery);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

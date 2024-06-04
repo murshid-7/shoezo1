@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoezo_app/functions/cart_functions.dart';
-import 'package:shoezo_app/models/cart_model.dart';
-import 'package:shoezo_app/screens/edit_product_page.dart';
+import 'package:provider/provider.dart';
+import 'package:shoezo_app/controller/cart_provider.dart';
+import 'package:shoezo_app/view/edit_product_page.dart';
 import 'dart:io';
 
 import 'package:shoezo_app/widgets/bottom_nav.dart';
@@ -16,32 +16,20 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    getAllShoesCart();
+    Provider.of<CartProvider>(context, listen: false).getAllCart();
 
     return Scaffold(
-      backgroundColor:const Color.fromARGB(255, 223, 220, 217),
+      backgroundColor: const Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 223, 220, 217),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-              onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomNav(),
-                  )),
-            ),
-            ValueListenableBuilder(
-              valueListenable: cartListNotifier,
-              builder: (context, List<CartModel> cart, Widget? child) {
+            Consumer<CartProvider>(
+              builder: (context, value, child) {
                 return Text(
-                  'Total : $totalPrice',
+                  'Total : ${value.totalPrice}',
                   style: const TextStyle(
                     color: Colors.white,
                     backgroundColor: Colors.black,
@@ -53,16 +41,16 @@ class _CartPageState extends State<CartPage> {
         ),
         centerTitle: true,
       ),
-      body: ValueListenableBuilder(
-        valueListenable: cartListNotifier,
-        builder: (context, List<CartModel> cart, Widget? child) {
+      body: Consumer<CartProvider>(
+        builder: (context, value, child) {
           return ListView.builder(
-            itemCount: cart.length,
+            itemCount: value.cartList.length,
             itemBuilder: (context, index) {
-              final data = cart[index];
+              final data = value.cartList[index];
               return ProductItem(
                 title: data.name,
                 subtitle: data.price,
+                category: data.category,
                 index: index,
                 image: data.image,
                 context: context,
@@ -77,10 +65,12 @@ class _CartPageState extends State<CartPage> {
   Widget ProductItem({
     required BuildContext context,
     required int index,
+    required String category,
     required String title,
     required String subtitle,
     required String image,
   }) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
     return Column(
       children: [
         const SizedBox(
@@ -124,8 +114,8 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    getAllShoesCart();
-                                    deleteShoesCart(index);
+                                    cartProvider.getAllCart();
+                                    cartProvider.deleteFromCart(index);
                                     Navigator.of(context).pop();
                                     setState(() {});
                                   },
@@ -151,6 +141,7 @@ class _CartPageState extends State<CartPage> {
                           price: subtitle,
                           index: index,
                           imagePath: image,
+                          category: category,
                         ),
                       ));
                     },
